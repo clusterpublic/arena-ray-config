@@ -14,6 +14,7 @@ import torch
 from typing import Dict
 
 import time
+import datetime
 from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
@@ -46,18 +47,27 @@ class APIIngress:
         response_class=JSONResponse,
     )
     async def generate(self, body: RequestBody):
+        start_timestamp = datetime.datetime.now().isoformat()
         start_time = time.time()
         model_ouput = await self.handle.generate.remote(body)
-        end_time = time.time()
-        completion_time= end_time-start_time
         upload_response= upload_to_s3(file_name=model_ouput["file_name"],object_name=model_ouput["file_name"],content_type="image/png")
+        end_time = time.time()
+        completion_timestamp = datetime.datetime.now().isoformat()
         resp = {
-            "image":{
-                "url":upload_response["url"]
-                },
-            "completion_time":completion_time,
-            "prompt":body.prompt
-        }
+            "completed_at": completion_timestamp,
+            "created_at": start_timestamp,
+            "error": None,
+            "input":body.dict(),
+            "metrics": {
+                "total_time": end_time-start_time,
+            },
+            "output": [
+                    upload_response["url"]
+            ],
+            "started_at": start_timestamp,
+            "status": "succeeded"
+                    
+                }
         return JSONResponse(content=resp)
 
 

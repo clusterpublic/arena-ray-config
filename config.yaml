@@ -57,7 +57,7 @@ applications:
       downscale_delay_s: 600.0
       upscale_delay_s: 30.0
     ray_actor_options:
-      num_cpus: 8.0
+      num_cpus: 6.0
       num_gpus: 1.0
 
   - name: APIIngress
@@ -99,7 +99,7 @@ applications:
       downscale_delay_s: 600.0
       upscale_delay_s: 30.0
     ray_actor_options:
-      num_cpus: 8.0
+      num_cpus: 6.0
       num_gpus: 1.0
 
   - name: APIIngress
@@ -139,7 +139,7 @@ applications:
       downscale_delay_s: 600.0
       upscale_delay_s: 30.0
     ray_actor_options:
-      num_cpus: 8.0
+      num_cpus: 6.0
       num_gpus: 1.0
 
   - name: APIIngress
@@ -182,7 +182,7 @@ applications:
       downscale_delay_s: 600.0
       upscale_delay_s: 30.0
     ray_actor_options:
-      num_cpus: 8.0
+      num_cpus: 6.0
       num_gpus: 0.5
 
   - name: APIIngress
@@ -226,7 +226,7 @@ applications:
       downscale_delay_s: 600.0
       upscale_delay_s: 30.0
     ray_actor_options:
-      num_cpus: 8.0
+      num_cpus: 6.0
       num_gpus: 0.5
 
   - name: APIIngress

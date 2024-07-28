@@ -12,7 +12,9 @@ from diffusers import EulerDiscreteScheduler, StableDiffusionPipeline,DiffusionP
 from typing import Dict
 
 from vllm import LLM,SamplingParams
+from vllm.outputs import RequestOutput
 import time
+import datetime
 from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
@@ -27,9 +29,10 @@ from pydantic import BaseModel
 
 class RequestBody(BaseModel):
     prompt: str
-    temperature: float = 1.0
-    top_p: float = 1.0
-    max_tokens: int = 16
+    temperature: float = 0.7
+    top_p: float = 0.95
+    top_k:int=-1
+    max_tokens: int = 256
     min_tokens:  int = 0
 
 
@@ -45,14 +48,33 @@ class APIIngress:
         response_class=JSONResponse,
     )
     async def generate(self, body: RequestBody):
+        start_timestamp = datetime.datetime.now().isoformat()
         start_time = time.time()
-        generated_text = await self.handle.generate.remote(body)
+        output_data:RequestOutput = await self.handle.generate.remote(body)
+        metrics = output_data.metrics
+        generated_text = output_data.outputs[0].text
         end_time = time.time()
+        completion_timestamp = datetime.datetime.now().isoformat()
         resp = {
-            "text":generated_text,
-            "time_taken":end_time-start_time,
-            "prompt":body.prompt
-        }
+            "completed_at": completion_timestamp,
+            "created_at": start_timestamp,
+            "error": None,
+            "input":body.dict(),
+            "metrics": {
+                "total_time": end_time-start_time,
+                "input_token_count": len(output_data.prompt_token_ids),
+                "tokens_per_second": len(output_data.outputs[0].token_ids)/(metrics.finished_time-metrics.first_scheduled_time),
+                "output_token_count": len(output_data.outputs[0].token_ids),
+                "predict_time": metrics.finished_time-metrics.first_scheduled_time,
+                "time_to_first_token":metrics.first_token_time- metrics.arrival_time
+            },
+            "output": [
+                generated_text
+            ],
+            "started_at": start_timestamp,
+            "status": "succeeded"
+                    
+                }
         return JSONResponse(content=resp)
 
 
@@ -67,12 +89,10 @@ class LLMApplication:
     def generate(self, body:RequestBody):
         prompts = []
         prompts.append(body.prompt)
-        sampling_params=SamplingParams(temperature=body.temperature,top_p=body.top_p,min_tokens=body.min_tokens,max_tokens=body.max_tokens)
+        sampling_params=SamplingParams(temperature=body.temperature,top_p=body.top_p,min_tokens=body.min_tokens,max_tokens=body.max_tokens,top_k=body.top_k)
         output = self.model.generate(prompts,sampling_params)
-        text= output[0].outputs[0].text
-        return text
-
-
+        return output[0]
+        
 def app_builder(args: Dict[str, str]) -> Application:
     return APIIngress.options(route_prefix=args["route_prefix"]).bind(LLMApplication.bind(args["model_id"]))
 
