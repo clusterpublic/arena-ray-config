@@ -83,9 +83,9 @@ class APIIngress:
     autoscaling_config={"min_replicas": 1, "max_replicas": 1},
 )
 class LLMApplication:
-    def __init__(self,model_id:str):
+    def __init__(self,model_id:str,max_model_len=None):
         print("n\n","model_id",model_id,"\n\n")
-        self.model = LLM(model=model_id)
+        self.model = LLM(model=model_id,max_model_len=max_model_len)
     def generate(self, body:RequestBody):
         prompts = []
         prompts.append(body.prompt)
@@ -94,6 +94,6 @@ class LLMApplication:
         return output[0]
         
 def app_builder(args: Dict[str, str]) -> Application:
-    return APIIngress.options(route_prefix=args["route_prefix"]).bind(LLMApplication.bind(args["model_id"]))
+    return APIIngress.options(route_prefix=args["route_prefix"]).bind(LLMApplication.bind(args["model_id"],args["max_model_len"] if "max_model_len" in args else None))
 
 
