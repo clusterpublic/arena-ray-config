@@ -79,12 +79,37 @@ class SDApplication:
     def __init__(self,model_id:str):
         print("n\n","model_id",model_id,"\n\n")
         
-        self.pipe = DiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16, use_safetensors=True, variant="fp16")
-        # self.pipe.unet = torch.compile(self.pipe.unet, mode="reduce-overhead", fullgraph=True)
-        self.pipe.to("cuda")
+        self.base = DiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16, use_safetensors=True, variant="fp16")
+        # self.base.unet = torch.compile(self.base.unet, mode="reduce-overhead", fullgraph=True)
+        self.base.to("cuda")
+        
+        self.refiner = DiffusionPipeline.from_pretrained(
+            "stabilityai/stable-diffusion-xl-refiner-1.0",
+            text_encoder_2=self.base.text_encoder_2,
+            vae=self.base.vae,
+            torch_dtype=torch.float16,
+            use_safetensors=True,
+            variant="fp16",
+        )
+        self.refiner.to("cuda")
         
     def generate(self, body:RequestBody):
-        image = self.pipe(prompt=body.prompt).images[0]
+        n_steps = 40
+        high_noise_frac = 0.8
+
+        # run both experts
+        image = self.base(
+            prompt=body.prompt,
+            num_inference_steps=n_steps,
+            denoising_end=high_noise_frac,
+            output_type="latent",
+        ).images
+        image = self.refiner(
+            prompt=body.prompt,
+            num_inference_steps=n_steps,
+            denoising_start=high_noise_frac,
+            image=image,
+        ).images[0]
         file_name=f"output{generate_random_string_id()}.png"
         image.save(file_name)
         return {
