@@ -8,7 +8,6 @@ from ray.serve import Application
 
 from upload_file import upload_to_s3,generate_random_string_id
 
-import torch
 from typing import Dict
 
 import time
