@@ -186,25 +186,104 @@ applications:
 
 
 
+# - name: stabilityai_stable-diffusion-xl-base-1.0
+
+#   route_prefix: /generate/stabilityai/stable-diffusion-xl-base-1.0
+
+#   import_path: applications.stable_diffusion:app_builder
+
+#   runtime_env: {}
+
+#   args:
+#     model_id: stabilityai/stable-diffusion-xl-base-1.0
+#     route_prefix: /generate/stabilityai/stable-diffusion-xl-base-1.0
+
+#   deployments:
+
+#   - name: SDApplication
+#     autoscaling_config:
+#       min_replicas: 1
+#       initial_replicas: null
+#       max_replicas: 1
+#       target_num_ongoing_requests_per_replica: 2.0
+#       target_ongoing_requests: null
+#       metrics_interval_s: 10.0
+#       look_back_period_s: 30.0
+#       smoothing_factor: 1.0
+#       upscale_smoothing_factor: null
+#       downscale_smoothing_factor: null
+#       upscaling_factor: null
+#       downscaling_factor: null
+#       downscale_delay_s: 600.0
+#       upscale_delay_s: 30.0
+#     ray_actor_options:
+#       num_cpus: 2.0
+#       num_gpus: 0.5
+#       resources:
+#         a10g: 0.5
+  
+
+#   - name: APIIngress
+#     num_replicas: 1
 
 
 
 
-- name: stabilityai_stable-diffusion-xl-base-1.0
+# - name: bark_suno
 
-  route_prefix: /generate/stabilityai/stable-diffusion-xl-base-1.0
+#   route_prefix: /generate/bark/suno
 
-  import_path: applications.stable_diffusion:app_builder
+#   import_path: applications.suno:app_builder
+
+#   runtime_env: {}
+
+#   args:
+#     model_id: bark/suno
+#     route_prefix: /generate/bark/suno
+
+#   deployments:
+
+#   - name: SunoApplication
+#     autoscaling_config:
+#       min_replicas: 1
+#       initial_replicas: null
+#       max_replicas: 1
+#       target_num_ongoing_requests_per_replica: 2.0
+#       target_ongoing_requests: null
+#       metrics_interval_s: 10.0
+#       look_back_period_s: 30.0
+#       smoothing_factor: 1.0
+#       upscale_smoothing_factor: null
+#       downscale_smoothing_factor: null
+#       upscaling_factor: null
+#       downscaling_factor: null
+#       downscale_delay_s: 600.0
+#       upscale_delay_s: 30.0
+#     ray_actor_options:
+#       num_cpus: 2.0
+#       num_gpus: 0.5
+#       resources:
+#         a10g: 0.5
+
+#   - name: APIIngress
+#     num_replicas: 1
+
+
+
+- name: ai-forever_Kandinsky-2
+
+  route_prefix: /generate/ai-forever/Kandinsky-2
+  import_path: applications.Kandinsky:app_builder
 
   runtime_env: {}
 
   args:
-    model_id: stabilityai/stable-diffusion-xl-base-1.0
-    route_prefix: /generate/stabilityai/stable-diffusion-xl-base-1.0
+    model_id: ai-forever/Kandinsky-2
+    route_prefix: /generate/ai-forever/Kandinsky-2
 
   deployments:
 
-  - name: SDApplication
+  - name: KandinskyApplication
     autoscaling_config:
       min_replicas: 1
       initial_replicas: null
@@ -231,47 +310,3 @@ applications:
     num_replicas: 1
 
 
-
-
-
-
-
-
-- name: bark_suno
-
-  route_prefix: /generate/bark/suno
-
-  import_path: applications.suno:app_builder
-
-  runtime_env: {}
-
-  args:
-    model_id: bark/suno
-    route_prefix: /generate/bark/suno
-
-  deployments:
-
-  - name: SunoApplication
-    autoscaling_config:
-      min_replicas: 1
-      initial_replicas: null
-      max_replicas: 1
-      target_num_ongoing_requests_per_replica: 2.0
-      target_ongoing_requests: null
-      metrics_interval_s: 10.0
-      look_back_period_s: 30.0
-      smoothing_factor: 1.0
-      upscale_smoothing_factor: null
-      downscale_smoothing_factor: null
-      upscaling_factor: null
-      downscaling_factor: null
-      downscale_delay_s: 600.0
-      upscale_delay_s: 30.0
-    ray_actor_options:
-      num_cpus: 2.0
-      num_gpus: 0.5
-      resources:
-        a10g: 0.5
-
-  - name: APIIngress
-    num_replicas: 1

@@ -74,7 +74,7 @@ class APIIngress:
     ray_actor_options={"num_gpus": 1},
     autoscaling_config={"min_replicas": 1, "max_replicas": 1},
 )
-class SDApplication:
+class KandinskyApplication:
     def __init__(self,model_id:str):
         print("n\n","model_id",model_id,"\n\n")
         
@@ -102,6 +102,6 @@ class SDApplication:
         }
 
 def app_builder(args: Dict[str, str]) -> Application:
-    return APIIngress.options(route_prefix=args["route_prefix"]).bind(SDApplication.bind(args["model_id"]))
+    return APIIngress.options(route_prefix=args["route_prefix"]).bind(KandinskyApplication.bind(args["model_id"]))
 
 
