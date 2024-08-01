@@ -51,7 +51,7 @@ class APIIngress:
         start_timestamp = datetime.datetime.now().isoformat()
         start_time = time.time()
         model_ouput = await self.handle.generate.remote(body)
-        upload_response= upload_to_s3(file_name=model_ouput["file_name"],object_name=model_ouput["file_name"],content_type="image/png")
+        upload_response= upload_to_s3(file_name=model_ouput["file_name"],object_name=model_ouput["file_name"],content_type="audio/wav")
         end_time = time.time()
         completion_timestamp = datetime.datetime.now().isoformat()
         resp = {
