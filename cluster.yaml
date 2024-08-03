@@ -54,6 +54,11 @@ available_node_types:
         node_config:
             InstanceType: g5.xlarge
             ImageId: ami-061fa4eb2f407a5fe
+            TagSpecifications: 
+                    - ResourceType: "instance"
+                      Tags:
+                          - Key: Name
+                            Value: "ray.head.default"  
             BlockDeviceMappings:
                 - DeviceName: /dev/sda1
                   Ebs:
@@ -67,6 +72,11 @@ available_node_types:
     #     node_config:
     #         InstanceType: g5.xlarge
     #         ImageId: ami-061fa4eb2f407a5fe
+    #         TagSpecifications: 
+    #                 - ResourceType: "instance"
+    #                   Tags:
+    #                       - Key: Name
+    #                         Value: "ray.worker.llm1"  
     #         BlockDeviceMappings:
     #             - DeviceName: /dev/sda1
     #               Ebs:
@@ -80,6 +90,11 @@ available_node_types:
     #     node_config:
     #         InstanceType: g5.xlarge
     #         ImageId: ami-061fa4eb2f407a5fe
+    #         TagSpecifications: 
+    #                 - ResourceType: "instance"
+    #                   Tags:
+    #                       - Key: Name
+    #                         Value: "ray.worker.llm2"  
     #         BlockDeviceMappings:
     #             - DeviceName: /dev/sda1
     #               Ebs:
@@ -93,6 +108,11 @@ available_node_types:
     #     node_config:
     #         InstanceType: g5.xlarge
     #         ImageId: ami-061fa4eb2f407a5fe
+    #         TagSpecifications: 
+    #                 - ResourceType: "instance"
+    #                   Tags:
+    #                       - Key: Name
+    #                         Value: "ray.worker.llm3"  
     #         BlockDeviceMappings:
     #             - DeviceName: /dev/sda1
     #               Ebs:
@@ -106,24 +126,34 @@ available_node_types:
     #     node_config:
     #         InstanceType: g5.xlarge
     #         ImageId: ami-061fa4eb2f407a5fe
+    #         TagSpecifications: 
+    #                 - ResourceType: "instance"
+    #                   Tags:
+    #                       - Key: Name
+    #                         Value: "ray.worker.llm4"  
     #         BlockDeviceMappings:
     #             - DeviceName: /dev/sda1
     #               Ebs:
     #                   VolumeSize: 130
     #                   VolumeType: gp3
-    ray.worker.llm5:
-        min_workers: 1
-        max_workers: 1
-        resources: 
-            llm_facebook_opt-125m: 10
-        node_config:
-            InstanceType: g5.xlarge
-            ImageId: ami-061fa4eb2f407a5fe
-            BlockDeviceMappings:
-                - DeviceName: /dev/sda1
-                  Ebs:
-                      VolumeSize: 130
-                      VolumeType: gp3
+    # ray.worker.llm5:
+    #     min_workers: 1
+    #     max_workers: 1
+    #     resources: 
+    #         llm_facebook_opt-125m: 10
+    #     node_config:
+    #         InstanceType: g5.xlarge
+    #         ImageId: ami-061fa4eb2f407a5fe
+    #         TagSpecifications: 
+    #                 - ResourceType: "instance"
+    #                   Tags:
+    #                       - Key: Name
+    #                         Value: "ray.worker.llm5"  
+    #         BlockDeviceMappings:
+    #             - DeviceName: /dev/sda1
+    #               Ebs:
+    #                   VolumeSize: 130
+    #                   VolumeType: gp3
     ray.worker.llm6:
         min_workers: 1
         max_workers: 1
@@ -132,24 +162,34 @@ available_node_types:
         node_config:
             InstanceType: g5.xlarge
             ImageId: ami-061fa4eb2f407a5fe
+            TagSpecifications: 
+                    - ResourceType: "instance"
+                      Tags:
+                          - Key: Name
+                            Value: "ray.worker.llm6"  
             BlockDeviceMappings:
                 - DeviceName: /dev/sda1
                   Ebs:
                       VolumeSize: 130
                       VolumeType: gp3
-    ray.worker.llm7:
-        min_workers: 1
-        max_workers: 1
-        resources: 
-            llm_openai-community_gpt2-large: 10
-        node_config:
-            InstanceType: g5.xlarge
-            ImageId: ami-061fa4eb2f407a5fe
-            BlockDeviceMappings:
-                - DeviceName: /dev/sda1
-                  Ebs:
-                      VolumeSize: 130
-                      VolumeType: gp3
+    # ray.worker.llm7:
+    #     min_workers: 1
+    #     max_workers: 1
+    #     resources: 
+    #         llm_openai-community_gpt2-large: 10
+    #     node_config:
+    #         InstanceType: g5.xlarge
+    #         ImageId: ami-061fa4eb2f407a5fe
+    #         TagSpecifications: 
+    #                 - ResourceType: "instance"
+    #                   Tags:
+    #                       - Key: Name
+    #                         Value: "ray.worker.llm7"  
+    #         BlockDeviceMappings:
+    #             - DeviceName: /dev/sda1
+    #               Ebs:
+    #                   VolumeSize: 130
+    #                   VolumeType: gp3
     ray.worker.llm8:
         min_workers: 1
         max_workers: 1
@@ -158,6 +198,11 @@ available_node_types:
         node_config:
             InstanceType: g5.xlarge
             ImageId: ami-061fa4eb2f407a5fe
+            TagSpecifications: 
+                    - ResourceType: "instance"
+                      Tags:
+                          - Key: Name
+                            Value: "ray.worker.llm8"  
             BlockDeviceMappings:
                 - DeviceName: /dev/sda1
                   Ebs:
@@ -171,24 +216,34 @@ available_node_types:
     #     node_config:
     #         InstanceType: g5.xlarge
     #         ImageId: ami-061fa4eb2f407a5fe
+    #         TagSpecifications: 
+    #                 - ResourceType: "instance"
+    #                   Tags:
+    #                       - Key: Name
+    #                         Value: "ray.worker.sdxl-base"  
     #         BlockDeviceMappings:
     #             - DeviceName: /dev/sda1
     #               Ebs:
     #                   VolumeSize: 130
     #                   VolumeType: gp3
-    ray.worker.sdxl-turbo:
-        min_workers: 1
-        max_workers: 1
-        resources: 
-            stabilityai_sdxl-turbo: 10
-        node_config:
-            InstanceType: g5.xlarge
-            ImageId: ami-061fa4eb2f407a5fe
-            BlockDeviceMappings:
-                - DeviceName: /dev/sda1
-                  Ebs:
-                      VolumeSize: 130
-                      VolumeType: gp3
+    # ray.worker.sdxl-turbo:
+    #     min_workers: 1
+    #     max_workers: 1
+    #     resources: 
+    #         stabilityai_sdxl-turbo: 10
+    #     node_config:
+    #         InstanceType: g5.xlarge
+    #         ImageId: ami-061fa4eb2f407a5fe
+    #         TagSpecifications: 
+    #                 - ResourceType: "instance"
+    #                   Tags:
+    #                       - Key: Name
+    #                         Value: "ray.worker.sdxl-turbo"  
+    #         BlockDeviceMappings:
+    #             - DeviceName: /dev/sda1
+    #               Ebs:
+    #                   VolumeSize: 130
+    #                   VolumeType: gp3
     # ray.worker.moondream2:
     #     min_workers: 1
     #     max_workers: 1
@@ -197,6 +252,11 @@ available_node_types:
     #     node_config:
     #         InstanceType: g5.xlarge
     #         ImageId: ami-061fa4eb2f407a5fe
+    #         TagSpecifications: 
+    #                 - ResourceType: "instance"
+    #                   Tags:
+    #                       - Key: Name
+    #                         Value: "ray.worker.moondream2"  
     #         BlockDeviceMappings:
     #             - DeviceName: /dev/sda1
     #               Ebs:
