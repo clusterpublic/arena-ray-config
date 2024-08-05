@@ -65,9 +65,14 @@ applications:
     ray_actor_options:
       num_cpus: 2.0
       num_gpus: 1.0
+      resources:
+        llm1: 1
 
   - name: APIIngress
     num_replicas: 1
+    ray_actor_options:
+      resources:
+        llm1: 1
 
 
 
@@ -112,9 +117,14 @@ applications:
     ray_actor_options:
       num_cpus: 2.0
       num_gpus: 1.0
+      resources:
+        llm2: 1
 
   - name: APIIngress
     num_replicas: 1
+    ray_actor_options:
+      resources:
+        llm2: 1
 
 
 
@@ -158,9 +168,14 @@ applications:
     ray_actor_options:
       num_cpus: 2.0
       num_gpus: 1.0
+      resources:
+        llm3: 1
 
   - name: APIIngress
     num_replicas: 1
+    ray_actor_options:
+      resources:
+        llm3: 1
 
 
 
@@ -210,10 +225,15 @@ applications:
     ray_actor_options:
       num_cpus: 2.0
       num_gpus: 1
+      resources:
+        llm4: 1
   
 
   - name: APIIngress
     num_replicas: 1
+    ray_actor_options:
+      resources:
+        llm4: 1
 
 
 
@@ -256,16 +276,17 @@ applications:
       downscale_delay_s: 600.0
       upscale_delay_s: 30.0
     ray_actor_options:
-      num_cpus: 2.0
+      num_cpus: 1.0
       num_gpus: 1.0
       resources:
-        llm_google_gemma-2b-it: 1
+        llm5: 1
+      
 
   - name: APIIngress
     num_replicas: 1
     ray_actor_options:
       resources:
-        llm_google_gemma-2b-it: 1
+        llm5: 1
 
 
 
@@ -308,16 +329,16 @@ applications:
       downscale_delay_s: 600.0
       upscale_delay_s: 30.0
     ray_actor_options:
-      num_cpus: 2.0
+      num_cpus: 1.0
       num_gpus: 1.0
       resources:
-        llm_facebook_opt-125m: 1
+        llm6: 1
 
   - name: APIIngress
     num_replicas: 1
     ray_actor_options:
       resources:
-        llm_facebook_opt-125m: 1
+        llm6: 1
 
 
 
@@ -362,13 +383,13 @@ applications:
       num_cpus: 2.0
       num_gpus: 1.0
       resources:
-        llm_openai-community_gpt2-large: 1
+        llm7: 1
 
   - name: APIIngress
     num_replicas: 1
     ray_actor_options:
       resources:
-        llm_openai-community_gpt2-large: 1
+        llm7: 1
 
 
 
@@ -418,14 +439,14 @@ applications:
       num_cpus: 2.0
       num_gpus: 1
       resources:
-        microsoft_phi-2: 1
+        llm8: 7
   
 
   - name: APIIngress
     num_replicas: 1
     ray_actor_options:
       resources:
-        microsoft_phi-2: 1
+        llm8: 7
 
 
 
@@ -477,125 +498,14 @@ applications:
       num_cpus: 1.0
       num_gpus: 0.5
       resources:
-        stabilityai_stable-diffusion-xl-base-1.0: 1
+        sdxl_base_and_moondream: 1
   
 
   - name: APIIngress
     num_replicas: 1
     ray_actor_options:
       resources:
-        stabilityai_stable-diffusion-xl-base-1.0: 1
-
-
-
-
-- name: bark_suno
-
-  route_prefix: /generate/bark/suno
-
-  import_path: applications.suno:app_builder
-
-  runtime_env:
-    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/clusterprotocol-ray-cluster-main.zip"
-    pip:
-      - torch
-      - transformers==4.43.2
-      - scipy
-
-    env_vars:
-      HF_TOKEN: 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
-      AWS_ACCESS_KEY_ID: AKIA4N6EV3UKYIUF4IXK
-      AWS_SECRET_ACCESS_KEY: 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
-
-  args:
-    model_id: bark/suno
-    route_prefix: /generate/bark/suno
-
-  deployments:
-
-  - name: SunoApplication
-    autoscaling_config:
-      min_replicas: 1
-      initial_replicas: null
-      max_replicas: 1
-      target_num_ongoing_requests_per_replica: 2.0
-      target_ongoing_requests: null
-      metrics_interval_s: 10.0
-      look_back_period_s: 30.0
-      smoothing_factor: 1.0
-      upscale_smoothing_factor: null
-      downscale_smoothing_factor: null
-      upscaling_factor: null
-      downscaling_factor: null
-      downscale_delay_s: 600.0
-      upscale_delay_s: 30.0
-    ray_actor_options:
-      num_cpus: 1.0
-      num_gpus: 0.5
-      resources:
-        stabilityai_sdxl-turbo: 1
-
-  - name: APIIngress
-    num_replicas: 1
-    ray_actor_options: 
-      resources:
-        stabilityai_sdxl-turbo: 1
-
-
-
-- name: stabilityai_sdxl-turbo
-
-  route_prefix: /generate/stabilityai/sdxl-turbo
-
-  import_path: applications.sdxl:app_builder
-
-  runtime_env:
-    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/clusterprotocol-ray-cluster-main.zip"
-    pip:
-      - torch
-      - transformers==4.43.2
-      - diffusers==0.29.2
-      - vllm==0.5.3.post1
-    env_vars:
-      HF_TOKEN: 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
-      AWS_ACCESS_KEY_ID: AKIA4N6EV3UKYIUF4IXK
-      AWS_SECRET_ACCESS_KEY: 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
-
-  args:
-    model_id: stabilityai/sdxl-turbo
-    route_prefix: /generate/stabilityai/sdxl-turbo
-
-  deployments:
-
-  - name: SDApplication
-    autoscaling_config:
-      min_replicas: 1
-      initial_replicas: null
-      max_replicas: 1
-      target_num_ongoing_requests_per_replica: 2.0
-      target_ongoing_requests: null
-      metrics_interval_s: 10.0
-      look_back_period_s: 30.0
-      smoothing_factor: 1.0
-      upscale_smoothing_factor: null
-      downscale_smoothing_factor: null
-      upscaling_factor: null
-      downscaling_factor: null
-      downscale_delay_s: 600.0
-      upscale_delay_s: 30.0
-    ray_actor_options:
-      num_cpus: 1.0
-      num_gpus: 0.5
-      resources:
-        stabilityai_sdxl-turbo: 1
-  
-
-  - name: APIIngress
-    num_replicas: 1
-    ray_actor_options:
-      resources:
-        stabilityai_sdxl-turbo: 1
-
+        sdxl_base_and_moondream: 1
 
 
 
@@ -643,16 +553,124 @@ applications:
       upscale_delay_s: 30.0
     ray_actor_options:
       num_cpus: 2.0
-      num_gpus: 1
+      num_gpus: 0.5
       resources:
-        lucataco_moondream2: 1
+        sdxl_base_and_moondream: 1
   
 
   - name: APIIngress
     num_replicas: 1
     ray_actor_options:
       resources:
-        lucataco_moondream2: 1
+        sdxl_base_and_moondream: 1
+
+
+- name: bark_suno
+
+  route_prefix: /generate/bark/suno
+
+  import_path: applications.suno:app_builder
+
+  runtime_env:
+    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/clusterprotocol-ray-cluster-main.zip"
+    pip:
+      - torch
+      - transformers==4.43.2
+      - scipy
+
+    env_vars:
+      HF_TOKEN: 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
+      AWS_ACCESS_KEY_ID: AKIA4N6EV3UKYIUF4IXK
+      AWS_SECRET_ACCESS_KEY: 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
+
+  args:
+    model_id: bark/suno
+    route_prefix: /generate/bark/suno
+
+  deployments:
+
+  - name: SunoApplication
+    autoscaling_config:
+      min_replicas: 1
+      initial_replicas: null
+      max_replicas: 1
+      target_num_ongoing_requests_per_replica: 2.0
+      target_ongoing_requests: null
+      metrics_interval_s: 10.0
+      look_back_period_s: 30.0
+      smoothing_factor: 1.0
+      upscale_smoothing_factor: null
+      downscale_smoothing_factor: null
+      upscaling_factor: null
+      downscaling_factor: null
+      downscale_delay_s: 600.0
+      upscale_delay_s: 30.0
+    ray_actor_options:
+      num_gpus: 0.3
+      resources:
+        sdxl_turbo: 1
+
+  - name: APIIngress
+    num_replicas: 1
+    ray_actor_options: 
+      resources:
+        sdxl_turbo: 1
+
+
+
+- name: stabilityai_sdxl-turbo
+
+  route_prefix: /generate/stabilityai/sdxl-turbo
+
+  import_path: applications.sdxl:app_builder
+
+  runtime_env:
+    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/clusterprotocol-ray-cluster-main.zip"
+    pip:
+      - torch
+      - transformers==4.43.2
+      - diffusers==0.29.2
+      - vllm==0.5.3.post1
+    env_vars:
+      HF_TOKEN: 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
+      AWS_ACCESS_KEY_ID: AKIA4N6EV3UKYIUF4IXK
+      AWS_SECRET_ACCESS_KEY: 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
+
+  args:
+    model_id: stabilityai/sdxl-turbo
+    route_prefix: /generate/stabilityai/sdxl-turbo
+
+  deployments:
+
+  - name: SDApplication
+    autoscaling_config:
+      min_replicas: 1
+      initial_replicas: null
+      max_replicas: 1
+      target_num_ongoing_requests_per_replica: 2.0
+      target_ongoing_requests: null
+      metrics_interval_s: 10.0
+      look_back_period_s: 30.0
+      smoothing_factor: 1.0
+      upscale_smoothing_factor: null
+      downscale_smoothing_factor: null
+      upscaling_factor: null
+      downscaling_factor: null
+      downscale_delay_s: 600.0
+      upscale_delay_s: 30.0
+    ray_actor_options:
+      num_gpus: 0.5
+      resources:
+        sdxl_turbo: 1
+  
+
+  - name: APIIngress
+    num_replicas: 1
+    ray_actor_options:
+      resources:
+        sdxl_turbo: 1
+
+
 
 
 - name: Salesforce_blip-image-captioning-large
@@ -698,19 +716,16 @@ applications:
       downscale_delay_s: 600.0
       upscale_delay_s: 30.0
     ray_actor_options:
-      num_cpus: 2.0
-      num_gpus: 1
+      num_gpus: 0.2
       resources:
-        # Salesforce_blip-image-captioning-large: 1
-        lucataco_moondream2: 1
+        sdxl_turbo: 1
   
 
   - name: APIIngress
     num_replicas: 1
     ray_actor_options:
       resources:
-        # Salesforce_blip-image-captioning-large: 1
-        lucataco_moondream2: 1
+        sdxl_turbo: 1
 
 
 

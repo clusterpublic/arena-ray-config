@@ -67,6 +67,8 @@ available_node_types:
     ray.worker.llm1:
         min_workers: 1
         max_workers: 1
+        resources: 
+            llm1: 10
         node_config:
             InstanceType: g5.xlarge
             ImageId: ami-061fa4eb2f407a5fe
@@ -83,6 +85,8 @@ available_node_types:
     ray.worker.llm2:
         min_workers: 1
         max_workers: 1
+        resources: 
+            llm2: 10
         node_config:
             InstanceType: g5.xlarge
             ImageId: ami-061fa4eb2f407a5fe
@@ -99,6 +103,8 @@ available_node_types:
     ray.worker.llm3:
         min_workers: 1
         max_workers: 1
+        resources: 
+            llm3: 10
         node_config:
             InstanceType: g5.xlarge
             ImageId: ami-061fa4eb2f407a5fe
@@ -115,6 +121,8 @@ available_node_types:
     ray.worker.llm4:
         min_workers: 1
         max_workers: 1
+        resources: 
+            llm4: 10
         node_config:
             InstanceType: g5.xlarge
             ImageId: ami-061fa4eb2f407a5fe
@@ -132,7 +140,7 @@ available_node_types:
         min_workers: 1
         max_workers: 1
         resources: 
-            llm_facebook_opt-125m: 10
+            llm5: 10
         node_config:
             InstanceType: g5.xlarge
             ImageId: ami-061fa4eb2f407a5fe
@@ -150,7 +158,7 @@ available_node_types:
         min_workers: 1
         max_workers: 1
         resources: 
-            microsoft_phi-2: 10
+            llm6: 10
         node_config:
             InstanceType: g5.xlarge
             ImageId: ami-061fa4eb2f407a5fe
@@ -168,7 +176,7 @@ available_node_types:
         min_workers: 1
         max_workers: 1
         resources: 
-            llm_openai-community_gpt2-large: 10
+            llm7: 10
         node_config:
             InstanceType: g5.xlarge
             ImageId: ami-061fa4eb2f407a5fe
@@ -186,7 +194,7 @@ available_node_types:
         min_workers: 1
         max_workers: 1
         resources: 
-            google_gemma-7b: 10
+            llm8: 10
         node_config:
             InstanceType: g5.xlarge
             ImageId: ami-061fa4eb2f407a5fe
@@ -200,31 +208,13 @@ available_node_types:
                   Ebs:
                       VolumeSize: 130
                       VolumeType: gp3
-    ray.worker.sdxl-base:
-        min_workers: 1
-        max_workers: 1
-        resources: 
-            stabilityai_stable-diffusion-xl-base-1.0: 10
-        node_config:
-            InstanceType: g5.xlarge
-            ImageId: ami-061fa4eb2f407a5fe
-            TagSpecifications: 
-                    - ResourceType: "instance"
-                      Tags:
-                          - Key: Name
-                            Value: "ray.worker.sdxl-base"  
-            BlockDeviceMappings:
-                - DeviceName: /dev/sda1
-                  Ebs:
-                      VolumeSize: 130
-                      VolumeType: gp3
     ray.worker.sdxl-turbo:
         min_workers: 1
         max_workers: 1
         resources: 
-            stabilityai_sdxl-turbo: 10
+            sdxl_turbo: 10
         node_config:
-            InstanceType: g5.xlarge
+            InstanceType: g5.2xlarge
             ImageId: ami-061fa4eb2f407a5fe
             TagSpecifications: 
                     - ResourceType: "instance"
@@ -236,11 +226,11 @@ available_node_types:
                   Ebs:
                       VolumeSize: 130
                       VolumeType: gp3
-    ray.worker.moondream2:
+    ray.worker.sdxl_base_and_moondream:
         min_workers: 1
         max_workers: 1
         resources: 
-            lucataco_moondream2: 10
+            sdxl_base_and_moondream: 10
         node_config:
             InstanceType: g5.xlarge
             ImageId: ami-061fa4eb2f407a5fe
@@ -248,7 +238,7 @@ available_node_types:
                     - ResourceType: "instance"
                       Tags:
                           - Key: Name
-                            Value: "ray.worker.moondream2"  
+                            Value: "ray.worker.sdxl_base_and_moondream"  
             BlockDeviceMappings:
                 - DeviceName: /dev/sda1
                   Ebs:
