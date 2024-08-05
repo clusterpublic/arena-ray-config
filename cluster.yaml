@@ -154,24 +154,24 @@ available_node_types:
                   Ebs:
                       VolumeSize: 130
                       VolumeType: gp3
-    # ray.worker.llm6:
-    #     min_workers: 1
-    #     max_workers: 1
-    #     resources: 
-    #         llm_Qwen_Qwen-VL-Chat: 10
-    #     node_config:
-    #         InstanceType: g5.xlarge
-    #         ImageId: ami-061fa4eb2f407a5fe
-    #         TagSpecifications: 
-    #                 - ResourceType: "instance"
-    #                   Tags:
-    #                       - Key: Name
-    #                         Value: "ray.worker.llm6"  
-    #         BlockDeviceMappings:
-    #             - DeviceName: /dev/sda1
-    #               Ebs:
-    #                   VolumeSize: 130
-    #                   VolumeType: gp3
+    ray.worker.llm6:
+        min_workers: 1
+        max_workers: 1
+        resources: 
+            microsoft_phi-2: 10
+        node_config:
+            InstanceType: g5.xlarge
+            ImageId: ami-061fa4eb2f407a5fe
+            TagSpecifications: 
+                    - ResourceType: "instance"
+                      Tags:
+                          - Key: Name
+                            Value: "ray.worker.llm6"  
+            BlockDeviceMappings:
+                - DeviceName: /dev/sda1
+                  Ebs:
+                      VolumeSize: 130
+                      VolumeType: gp3
     ray.worker.llm7:
         min_workers: 1
         max_workers: 1
