@@ -67,8 +67,6 @@ available_node_types:
     ray.worker.llm1:
         min_workers: 1
         max_workers: 1
-        resources: 
-            llm_meta-llama_Meta-Llama-3-8B-Instruct: 10
         node_config:
             InstanceType: g5.xlarge
             ImageId: ami-061fa4eb2f407a5fe
@@ -85,8 +83,6 @@ available_node_types:
     ray.worker.llm2:
         min_workers: 1
         max_workers: 1
-        resources: 
-            llm_meta-llama_Meta-Llama-Guard-2-8B: 10
         node_config:
             InstanceType: g5.xlarge
             ImageId: ami-061fa4eb2f407a5fe
@@ -103,8 +99,6 @@ available_node_types:
     ray.worker.llm3:
         min_workers: 1
         max_workers: 1
-        resources: 
-            llm_google_gemma-2b-it: 10
         node_config:
             InstanceType: g5.xlarge
             ImageId: ami-061fa4eb2f407a5fe
@@ -121,8 +115,6 @@ available_node_types:
     ray.worker.llm4:
         min_workers: 1
         max_workers: 1
-        resources: 
-            llm_mistralai_Mistral-7B-Instruct-v0.3: 10
         node_config:
             InstanceType: g5.xlarge
             ImageId: ami-061fa4eb2f407a5fe
@@ -262,27 +254,6 @@ available_node_types:
                   Ebs:
                       VolumeSize: 130
                       VolumeType: gp3
-
-
-    ray.worker.blip:
-        min_workers: 1
-        max_workers: 1
-        resources: 
-            Salesforce_blip-image-captioning-large: 10
-        node_config:
-            InstanceType: g5.xlarge
-            ImageId: ami-061fa4eb2f407a5fe
-            TagSpecifications: 
-                    - ResourceType: "instance"
-                      Tags:
-                          - Key: Name
-                            Value: "ray.worker.blip"  
-            BlockDeviceMappings:
-                - DeviceName: /dev/sda1
-                  Ebs:
-                      VolumeSize: 130
-                      VolumeType: gp3
-
 
 
 
