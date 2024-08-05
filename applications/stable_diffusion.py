@@ -2,7 +2,6 @@
 from io import BytesIO
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
-import torch
 from ray import serve
 from ray.serve.handle import DeploymentHandle
 from ray.serve import Application

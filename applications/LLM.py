@@ -2,13 +2,10 @@
 from io import BytesIO
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
-import torch
 from ray import serve
 from ray.serve.handle import DeploymentHandle
 from ray.serve import Application
 
-from upload_file import upload_to_s3
-from diffusers import EulerDiscreteScheduler, StableDiffusionPipeline,DiffusionPipeline 
 from typing import Dict
 
 from vllm import LLM,SamplingParams
