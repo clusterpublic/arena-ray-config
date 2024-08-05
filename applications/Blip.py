@@ -29,7 +29,7 @@ app.add_middleware(
 from pydantic import BaseModel
 
 class RequestBody(BaseModel):
-    prompt: str
+    # prompt: str
     image: str
 
 
