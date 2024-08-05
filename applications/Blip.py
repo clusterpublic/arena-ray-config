@@ -49,20 +49,20 @@ class APIIngress:
         uploaded_image = Image.open(BytesIO(uploaded_image_data))
         temp_file_name=f"{generate_random_string_id()}_uploaded_image.png"
         uploaded_image.save(temp_file_name)
-        text_prompt = body.prompt
-        print(f"Received text prompt: {text_prompt}")
+        # text_prompt = body.prompt
+        # print(f"Received text prompt: {text_prompt}")
         start_timestamp = datetime.datetime.now().isoformat()
         start_time = time.time()
-        output_data = await self.handle.generate.remote(body.prompt,temp_file_name)
+        output_data = await self.handle.generate.remote(temp_file_name)
         end_time = time.time()
         completion_timestamp = datetime.datetime.now().isoformat()
         resp = {
             "completed_at": completion_timestamp,
             "created_at": start_timestamp,
             "error": None,
-            "input":{
-                "prompt":body.prompt
-                },
+            # "input":{
+            #     "prompt":body.prompt
+            #     },
             "metrics": {
                 "total_time": end_time-start_time,
             },
@@ -85,7 +85,7 @@ class Application:
         print("n\n","model_id",model_id,"\n\n")
         self.processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-large")
         self.model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-large").to("cuda")
-    def generate(self, prompt:str,image_path:str):
+    def generate(self,image_path:str):
         image = Image.open(image_path)
         inputs = self.processor(image, return_tensors="pt").to("cuda")
 
