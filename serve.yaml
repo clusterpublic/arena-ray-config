@@ -439,14 +439,14 @@ applications:
       num_cpus: 2.0
       num_gpus: 1
       resources:
-        llm8: 7
+        llm8: 1
   
 
   - name: APIIngress
     num_replicas: 1
     ray_actor_options:
       resources:
-        llm8: 7
+        llm8: 1
 
 
 
@@ -495,8 +495,7 @@ applications:
       downscale_delay_s: 600.0
       upscale_delay_s: 30.0
     ray_actor_options:
-      num_cpus: 1.0
-      num_gpus: 0.5
+      num_gpus: 1
       resources:
         sdxl_base_and_moondream: 1
   
@@ -552,17 +551,17 @@ applications:
       downscale_delay_s: 600.0
       upscale_delay_s: 30.0
     ray_actor_options:
-      num_cpus: 2.0
-      num_gpus: 0.5
+      num_cpus: 1.0
+      num_gpus: 1
       resources:
-        sdxl_base_and_moondream: 1
+        head: 1
   
 
   - name: APIIngress
     num_replicas: 1
     ray_actor_options:
       resources:
-        sdxl_base_and_moondream: 1
+        head: 1
 
 
 - name: bark_suno
@@ -680,7 +679,7 @@ applications:
   import_path: applications.Blip:app_builder
 
   runtime_env:
-    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/clusterprotocol-ray-cluster-main.zip"
+    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/27e4dd5809c7c02a5b9c56f2a5d337c9edd37054.zip"
     pip:
       - torch
       - transformers

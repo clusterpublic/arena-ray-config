@@ -51,6 +51,8 @@ auth:
     ssh_user: ubuntu
 available_node_types:
     ray.head.default:
+        resources: 
+            head: 10
         node_config:
             InstanceType: g5.xlarge
             ImageId: ami-061fa4eb2f407a5fe
