@@ -32,7 +32,7 @@ applications:
 
   import_path: applications.LLM:app_builder
   runtime_env:
-    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/clusterprotocol-ray-cluster-main.zip"
+    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/524c0ac203325fe74a122fdd839e360ca8781406.zip"
     pip:
       - torch
       - transformers==4.43.2
@@ -84,7 +84,7 @@ applications:
   import_path: applications.LLM:app_builder
 
   runtime_env:
-    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/clusterprotocol-ray-cluster-main.zip"
+    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/524c0ac203325fe74a122fdd839e360ca8781406.zip"
     pip:
       - torch
       - transformers==4.43.2
@@ -135,7 +135,7 @@ applications:
   import_path: applications.LLM:app_builder
 
   runtime_env:
-    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/clusterprotocol-ray-cluster-main.zip"
+    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/524c0ac203325fe74a122fdd839e360ca8781406.zip"
     pip:
       - torch
       - transformers==4.43.2
@@ -186,7 +186,7 @@ applications:
   import_path: applications.LLM:app_builder
 
   runtime_env:
-    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/clusterprotocol-ray-cluster-main.zip"
+    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/524c0ac203325fe74a122fdd839e360ca8781406.zip"
     pip:
       - vllm
       - transformers
@@ -245,7 +245,7 @@ applications:
   import_path: applications.LLM:app_builder
 
   runtime_env:
-    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/clusterprotocol-ray-cluster-main.zip"
+    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/524c0ac203325fe74a122fdd839e360ca8781406.zip"
     pip:
       - torch
       - transformers==4.43.2
@@ -299,7 +299,7 @@ applications:
   import_path: applications.LLM:app_builder
 
   runtime_env:
-    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/clusterprotocol-ray-cluster-main.zip"
+    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/524c0ac203325fe74a122fdd839e360ca8781406.zip"
     pip:
       - torch
       - transformers==4.43.2
@@ -350,7 +350,7 @@ applications:
   import_path: applications.LLM:app_builder
 
   runtime_env:
-    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/clusterprotocol-ray-cluster-main.zip"
+    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/524c0ac203325fe74a122fdd839e360ca8781406.zip"
     pip:
       - torch
       - transformers==4.43.2
@@ -400,7 +400,7 @@ applications:
   import_path: applications.LLM:app_builder
 
   runtime_env:
-    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/clusterprotocol-ray-cluster-main.zip"
+    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/524c0ac203325fe74a122fdd839e360ca8781406.zip"
     pip:
       - vllm
       - transformers
@@ -461,7 +461,7 @@ applications:
   import_path: applications.stable_diffusion:app_builder
 
   runtime_env:
-    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/clusterprotocol-ray-cluster-main.zip"
+    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/524c0ac203325fe74a122fdd839e360ca8781406.zip"
     pip:
       - torch
       - transformers==4.43.2
@@ -515,7 +515,7 @@ applications:
   import_path: applications.moondream2:app_builder
 
   runtime_env:
-    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/clusterprotocol-ray-cluster-main.zip"
+    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/524c0ac203325fe74a122fdd839e360ca8781406.zip"
     pip:
       - torch==2.3.1
       - transformers==4.43.2
@@ -571,7 +571,7 @@ applications:
   import_path: applications.suno:app_builder
 
   runtime_env:
-    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/clusterprotocol-ray-cluster-main.zip"
+    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/524c0ac203325fe74a122fdd839e360ca8781406.zip"
     pip:
       - torch
       - transformers==4.43.2
@@ -624,7 +624,7 @@ applications:
   import_path: applications.sdxl:app_builder
 
   runtime_env:
-    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/clusterprotocol-ray-cluster-main.zip"
+    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/524c0ac203325fe74a122fdd839e360ca8781406.zip"
     pip:
       - torch
       - transformers==4.43.2
@@ -679,7 +679,7 @@ applications:
   import_path: applications.Blip:app_builder
 
   runtime_env:
-    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/27e4dd5809c7c02a5b9c56f2a5d337c9edd37054.zip"
+    working_dir: "https://assets-clusterprotocol.s3.ap-south-1.amazonaws.com/code/524c0ac203325fe74a122fdd839e360ca8781406.zip"
     pip:
       - torch
       - transformers
